@@ -6,8 +6,16 @@ newline:
 .text
 .globl main
 main:
-    addi sp, sp, -16
+    addi sp, sp, -80
     sd ra, 0(sp)
+    sd s0, 8(sp)
+    sd s1, 16(sp)
+    sd s2, 24(sp)
+    sd s3, 32(sp)
+    sd s4, 40(sp)
+    sd s5, 48(sp)
+    sd s6, 56(sp)
+    sd s7, 64(sp)
 
     addi s5, a0, -1 # s5 = n
     addi a1, a1, 8 # skip argv[0]
@@ -97,9 +105,18 @@ done:
     lla a0, newline
     call printf
     ld ra, 0(sp)
-    addi sp, sp, 16
+    ld s0, 8(sp)
+    ld s1, 16(sp)
+    ld s2, 24(sp)
+    ld s3, 32(sp)
+    ld s4, 40(sp)
+    ld s5, 48(sp)
+    ld s6, 56(sp)
+    ld s7, 64(sp)
+    addi sp, sp, 80
     ret
 
+# FUNCTIONS
 top:
     ld a0, -8(s0)
     ret

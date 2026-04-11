@@ -9,8 +9,15 @@ print_num:
 .text
 .globl main
 main:
-    addi sp, sp, -16
+    addi sp, sp, -64
     sd ra, 0(sp)
+    sd s0, 8(sp)
+    sd s1, 16(sp)
+    sd s3, 24(sp)
+    sd s4, 32(sp)
+    sd s5, 40(sp)
+    sd s7, 48(sp)
+    sd s8, 56(sp)
 
     lla a0, file_name
     lla a1, method
@@ -66,5 +73,12 @@ palin_done:
     call printf
 
     ld ra, 0(sp)
-    addi sp, sp, 16
+    ld s0, 8(sp)
+    ld s1, 16(sp)
+    ld s3, 24(sp)
+    ld s4, 32(sp)
+    ld s5, 40(sp)
+    ld s7, 48(sp)
+    ld s8, 56(sp)
+    addi sp, sp, 64
     ret
