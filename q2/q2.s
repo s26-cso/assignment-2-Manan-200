@@ -41,6 +41,7 @@ arg_loop:
     beqz s2, arg_done
     ld a0, 0(s4)
     call atoi
+    sext.w a0, a0    # sign extend 32-bit to 64-bit
     sd a0, 0(s3)
     addi s4, s4, 8 # argv ptr++
     addi s3, s3, 8 # arr ptr++
