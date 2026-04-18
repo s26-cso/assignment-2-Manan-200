@@ -1,6 +1,8 @@
 .section .rodata
 fmt_out:
     .string "%lld "
+fmt_out2:
+    .string "%lld"
 newline:
     .string "\n"
 .text
@@ -95,9 +97,19 @@ done_algo:
     mv s2, s5
 print_result:
     beqz s2, done
+    li t0, 1
+    beq s2, t0, last_num
     lla a0, fmt_out
     ld a1, 0(s3)
     call printf
+    j continue
+
+last_num:
+    lla a0, fmt_out2
+    ld a1, 0(s3)
+    call printf
+
+continue:
     addi s3, s3, 8
     addi s2, s2, -1
     j print_result

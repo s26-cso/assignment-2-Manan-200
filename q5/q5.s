@@ -5,6 +5,10 @@ method:
     .string "r"
 print_num:
     .string "%d\n"
+yes:
+    .string "Yes\n"
+no:
+    .string "No\n"
 
 .text
 .globl main
@@ -68,10 +72,16 @@ not_palin:
     li s5, 0
 
 palin_done:
-    lla a0, print_num
-    mv a1, s5
+    beqz s5, printNo
+    lla a0, yes
+    call printf
+    j clearStack
+
+printNo:
+    lla a0, no
     call printf
 
+clearStack:
     ld ra, 0(sp)
     ld s0, 8(sp)
     ld s1, 16(sp)
